@@ -23,5 +23,5 @@ jobs:
         env:
           REPO: self
           BRANCH: gh-pages
-          FOLDER: public
+          FOLDER: build
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
