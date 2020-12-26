@@ -45,15 +45,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Packages
         run: npm install
-      - name: Deploy to GH pages
-        run: |
-          git config --global user.email "prasadrajankalwar@gmail.com"
-          git config --global user.name "rajandmr"
-          git remote set-url origin https://${{secrets.MY_GITHUB_TOKEN}}@github.com/rajandmr/Reading-List-Context.git
-          npm run deploy
+      - name: Run Build
+        run: npm run build
+      # - name: Deploy to GH pages
+      #   run: |
+      #     git config --global user.email "prasadrajankalwar@gmail.com"
+      #     git config --global user.name "rajandmr"
+      #     git remote set-url origin https://${{secrets.MY_GITHUB_TOKEN}}@github.com/rajandmr/Reading-List-Context.git
+      #     npm run deploy
 
-      # - name: Deploy to gh-pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.MY_GITHUB_TOKEN }}
-      #     publish_dir: ./build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          publish_dir: ./build
